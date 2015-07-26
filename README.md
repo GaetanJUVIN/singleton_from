@@ -26,18 +26,22 @@ Or install it yourself as:
 class A
 	singleton_from :start
 
- 	def initialize(arg1, arg2)
+ 	def initialize(arg1, arg2, &block)
+		p block.call
  		p "Initialize"
  		p arg1
  		p arg2
  	end
 
- 	def start
+ 	def start(&block)
  		p "start"
+ 		p block.call
  	end
 end
 
-A.start("1", "2")
+A.start("1", "2") do
+	p "Hi, everyone... :-)"
+end
 ```
 
 ## License

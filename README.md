@@ -23,25 +23,30 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
+require 'singleton_from'
+
 class A
-	singleton_from :start
+	singleton_from :start, :stop
 
- 	def initialize(arg1, arg2, &block)
-		p block.call
- 		p "Initialize"
- 		p arg1
- 		p arg2
- 	end
+	def start(a, b, &block)
+		puts "start"
+		block.call
+	end
 
- 	def start(&block)
- 		p "start"
- 		p block.call
- 	end
-end
+	def stop
+		puts "stop"
+	end
+
+	def self.instance
+    	@__instance__ ||= new
+	end
+  end
 
 A.start("1", "2") do
-	p "Hi, everyone... :-)"
+	puts "Hi, everyone..."
 end
+
+A.stop
 ```
 
 ## License

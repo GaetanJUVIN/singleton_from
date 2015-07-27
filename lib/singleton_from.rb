@@ -1,31 +1,39 @@
 require "singleton_from/version"
 
 # class A
-# 	singleton_from :start
+# 	singleton_from :start, :stop
 #
-# 	def initialize(arg1, arg2, &block)
-# 		p block.call
-# 		p "Initialize"
-# 		p arg1
-# 		p arg2
+# 	def start(a, b, &block)
+# 		puts "start"
+# 		block.call
 # 	end
 #
-# 	def start(&block)
-# 		p block.call
-# 		p "start"
+# 	def stop
+# 		puts "stop"
 # 	end
-# end
+#
+# 	def self.instance
+#     	@__instance__ ||= new
+# 	end
+#   end
 #
 # A.start("1", "2") do
-# 	puts "Hi, everyone... :-)"
+# 	puts "Hi, everyone..."
 # end
+#
+# A.stop
 
 class Object
 	class << self
-		def singleton_from(method_name)
-			self.class.send(:define_method, method_name) do |*args, &block|
-				instance = self.new(*args, &block)
-				instance.send(__method__, &block)
+		def singleton_from(*method_names)
+			self.class.send(:define_method, :instance) do
+		    	@__instance__ ||= new
+			end
+
+			method_names.each do |method_name|
+				self.class.send(:define_method, method_name) do |*args, &block|
+					self.instance.send(__method__, *args, &block)
+				end
 			end
 		end
 	end

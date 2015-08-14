@@ -37,9 +37,6 @@ class A
 		puts "stop"
 	end
 
-	def self.instance
-    	@__instance__ ||= new
-	end
   end
 
 A.start("1", "2") do

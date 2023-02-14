@@ -1,8 +1,6 @@
 # SingletonFrom
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/singleton_from`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to the fantastic new gem! This directory contains all the necessary files to package and distribute your Ruby library as a gem. Your Ruby code should be placed in the file lib/singleton_from, and if you wish to experiment with the code, interactive prompts can be accessed by running bin/console.
 
 ## Installation
 
